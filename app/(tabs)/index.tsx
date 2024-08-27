@@ -1,70 +1,131 @@
-import { Image, StyleSheet, Platform } from 'react-native';
+import { Image, StyleSheet, Platform, View, Button, ScrollView, TouchableOpacity } from 'react-native';
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
+
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
+import { Colors } from '../../constants/Colors'
+import { EvilIcons } from '@expo/vector-icons';
+import { DefaultTheme } from '@react-navigation/native';
+import { useRouter } from 'expo-router';
 
 export default function HomeScreen() {
+
+  const router = useRouter();
+
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
+    <ScrollView style={styles.container}>
       <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
+        <ThemedText type="title" style={styles.title}>Hello, Sebastian!</ThemedText>
+        <ThemedText type="link" style={{ opacity: 0.5, color: 'black' }}>Your passwords are securely encrypted.</ThemedText>
       </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({ ios: 'cmd + d', android: 'cmd + m' })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
+
+      <ThemedView style={styles.passwordCard}>
+        <ThemedView style={styles.passwordCardIcon} backgroundColor={'#66E502'}>
+          <EvilIcons name='lock' size={30} style={{ color: 'white' }}  />
+        </ThemedView>
+        <ThemedText>New password</ThemedText>
+        <ThemedText>Create a new password within 2 clicks.</ThemedText>
+        <ThemedView style={styles.button}>
+          <Button title='Add new'></Button>
+        </ThemedView>
       </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+
+      <TouchableOpacity style={styles.passwordOptionContainer}>
+        <TouchableOpacity style={styles.passwordOptionCard} onPress={() => router.push('/explore')}>
+          <EvilIcons name='unlock' style={styles.passwordCardIcon} size={30} backgroundColor={'#A49AFD'} />
+          <ThemedText style={styles.passwordCardText}>All passwords</ThemedText>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.passwordOptionCard}>
+          <EvilIcons name='lock' style={styles.passwordCardIcon} size={30} backgroundColor={'#FF8D8D'} />
+          <ThemedText style={styles.passwordCardText}>Codes (2FA)</ThemedText>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.passwordOptionCard}>
+          <EvilIcons name='chart' style={styles.passwordCardIcon} size={30} backgroundColor={'#60D3EE'} />
+          <ThemedText style={styles.passwordCardText}>WLAN</ThemedText>
+        </TouchableOpacity>
+        
+        <TouchableOpacity style={styles.passwordOptionCard}>
+          <EvilIcons name='external-link' style={styles.passwordCardIcon} size={30} backgroundColor={'#F14871'} />
+          <ThemedText style={styles.passwordCardText}>More</ThemedText>
+        </TouchableOpacity>
+
+      </TouchableOpacity>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
+  container: {
+    display: 'flex',
+    marginTop: 60
+  },
+  button: {
+    display: 'flex',
+    justifyContent: 'center',
     alignItems: 'center',
-    gap: 8,
+    color: 'black',
+    backgroundColor: Colors.light.background,
+    padding: 5,
+    margin: 5,
+    borderRadius: 8,
+    width: '100%'
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  title: {
+    color: '#0C0C0C',
+    fontWeight: 600
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  passwordCardIcon: {
+    opacity: 0.8,
+    color: 'white',
+    borderRadius: 10,
+    overflow: 'hidden',
+    textAlign: 'center',
+    padding: 5,
   },
+
+  passwordCard: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#5ED602',
+    borderRadius: 20,
+    padding: 15,
+    margin: 15,
+  },
+
+  passwordOptionCard: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#FFFFFF',
+    borderRadius: 15,
+    padding: 30,
+    margin: 15,
+    flexBasis: '42%',
+    flexGrow: 1,
+    gap: 10
+  },
+
+  passwordCardText: {
+    color: 'black',
+  },
+
+  passwordOptionContainer: {
+    flex: 1,
+    flexWrap: 'wrap',
+    flexDirection: 'row',
+    minWidth: '100%',
+    backgroundColor: DefaultTheme.colors.background,
+    justifyContent: 'space-between',
+  },
+
+
+  titleContainer: {
+    flexDirection: 'column',
+    // top: 60,
+    margin: 15,
+    backgroundColor: 'transparent'
+  }
 });
