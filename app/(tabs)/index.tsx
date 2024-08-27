@@ -72,7 +72,7 @@ export default function HomeScreen() {
 
           <TouchableOpacity style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 5, backgroundColor: 'transparent' }}>
             <ThemedText style={{ color: '#0C0C0C' }}>See all</ThemedText>
-            <Ionicons name='arrow-forward-outline' size={25} color={'#0C0C0C'} />
+            <Ionicons name='arrow-forward-outline' size={20} color={'#0C0C0C'} />
           </TouchableOpacity>
         </ThemedView>
 
@@ -89,7 +89,7 @@ export default function HomeScreen() {
                 <ThemedText style={{ opacity: 0.5, color: 'black' }}>Added on 31/09/2024</ThemedText>
               </ThemedView>
             </ThemedView>
-            <Ionicons name='arrow-forward-outline' size={25} color={'#0C0C0C'} />
+            <Ionicons name='chevron-forward-outline' size={25} color={'#0C0C0C'} />
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.savedPasswordsCard}>
@@ -103,7 +103,7 @@ export default function HomeScreen() {
                 <ThemedText style={{ opacity: 0.5, color: 'black' }}>Added on 14/03/2024</ThemedText>
               </ThemedView>
             </ThemedView>
-            <Ionicons name='arrow-forward-outline' size={25} color={'#0C0C0C'} />
+            <Ionicons name='chevron-forward-outline' size={25} color={'#0C0C0C'} />
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.savedPasswordsCard}>
@@ -117,7 +117,7 @@ export default function HomeScreen() {
                 <ThemedText style={{ opacity: 0.5, color: 'black' }}>Added on 01/02/2024</ThemedText>
               </ThemedView>
             </ThemedView>
-            <Ionicons name='arrow-forward-outline' size={25} color={'#0C0C0C'} />
+            <Ionicons name='chevron-forward-outline' size={25} color={'#0C0C0C'} />
           </TouchableOpacity>
 
         </ThemedView>
