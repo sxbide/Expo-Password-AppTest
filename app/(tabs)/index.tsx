@@ -14,14 +14,22 @@ export default function HomeScreen() {
 
   return (
     <ScrollView style={styles.container}>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title" style={styles.title}>Hello, Sebastian!</ThemedText>
-        <ThemedText type="link" style={{ opacity: 0.5, color: 'black' }}>Your passwords are securely encrypted.</ThemedText>
+      <ThemedView style={styles.headerContainer}>
+        <ThemedView style={styles.headerText}>
+          <ThemedText type="title" style={styles.title}>Hello, Sebastian!</ThemedText>
+          <ThemedText type="link" style={{ opacity: 0.5, color: 'black' }}>Your passwords are securely encrypted.</ThemedText>
+        </ThemedView>
+
+        <ThemedView style={styles.headerInteraction}>
+          <TouchableOpacity onPress={() => router.push('/profile')}>
+            <EvilIcons name='user' size={35} style={{ color: 'black' }} />
+          </TouchableOpacity>
+        </ThemedView>
       </ThemedView>
 
       <ThemedView style={styles.passwordCard}>
         <ThemedView style={styles.passwordCardIcon} backgroundColor={'#66E502'}>
-          <EvilIcons name='lock' size={30} style={{ color: 'white' }}  />
+          <EvilIcons name='lock' size={30} style={{ color: 'white' }} />
         </ThemedView>
         <ThemedText>New password</ThemedText>
         <ThemedText>Create a new password within 2 clicks.</ThemedText>
@@ -45,7 +53,7 @@ export default function HomeScreen() {
           <EvilIcons name='chart' style={styles.passwordCardIcon} size={30} backgroundColor={'#60D3EE'} />
           <ThemedText style={styles.passwordCardText}>WLAN</ThemedText>
         </TouchableOpacity>
-        
+
         <TouchableOpacity style={styles.passwordOptionCard}>
           <EvilIcons name='external-link' style={styles.passwordCardIcon} size={30} backgroundColor={'#F14871'} />
           <ThemedText style={styles.passwordCardText}>More</ThemedText>
@@ -57,9 +65,26 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
+  headerText: {
+    backgroundColor: 'transparent'
+  },
+
+  headerContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    margin: 15,
+    backgroundColor: 'transparent'
+  },
+
+  headerInteraction: {
+    backgroundColor: 'transparent',
+  },
+
+
   container: {
     display: 'flex',
-    marginTop: 60
+    marginTop: 55
   },
   button: {
     display: 'flex',
