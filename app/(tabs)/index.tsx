@@ -4,7 +4,7 @@ import { Image, StyleSheet, Platform, View, Button, ScrollView, TouchableOpacity
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { Colors } from '../../constants/Colors'
-import { EvilIcons } from '@expo/vector-icons';
+import { EvilIcons, Ionicons } from '@expo/vector-icons';
 import { DefaultTheme } from '@react-navigation/native';
 import { useRouter } from 'expo-router';
 
@@ -22,49 +22,176 @@ export default function HomeScreen() {
 
         <ThemedView style={styles.headerInteraction}>
           <TouchableOpacity onPress={() => router.push('/profile')}>
-            <EvilIcons name='user' size={35} style={{ color: 'black' }} />
+            <Ionicons name='person-outline' size={25} style={{ color: 'black' }} />
           </TouchableOpacity>
         </ThemedView>
       </ThemedView>
 
       <ThemedView style={styles.passwordCard}>
         <ThemedView style={styles.passwordCardIcon} backgroundColor={'#66E502'}>
-          <EvilIcons name='lock' size={30} style={{ color: 'white' }} />
+          <Ionicons name='lock-closed-outline' size={25} style={{ color: 'white' }} />
         </ThemedView>
         <ThemedText>New password</ThemedText>
         <ThemedText>Create a new password within 2 clicks.</ThemedText>
         <ThemedView style={styles.button}>
-          <Button title='Add new'></Button>
+          <Button title='Add new' color={'#0C0C0C'}></Button>
         </ThemedView>
       </ThemedView>
 
-      <TouchableOpacity style={styles.passwordOptionContainer}>
+      <ThemedView style={styles.passwordOptionContainer}>
         <TouchableOpacity style={styles.passwordOptionCard} onPress={() => router.push('/explore')}>
-          <EvilIcons name='unlock' style={styles.passwordCardIcon} size={30} backgroundColor={'#A49AFD'} />
+          <Ionicons name='lock-open-outline' style={styles.passwordCardIcon} size={25} backgroundColor={'#A49AFD'} />
           <ThemedText style={styles.passwordCardText}>All passwords</ThemedText>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.passwordOptionCard}>
-          <EvilIcons name='lock' style={styles.passwordCardIcon} size={30} backgroundColor={'#FF8D8D'} />
+          <Ionicons name='key-outline' style={styles.passwordCardIcon} size={25} backgroundColor={'#FF8D8D'} />
           <ThemedText style={styles.passwordCardText}>Codes (2FA)</ThemedText>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.passwordOptionCard}>
-          <EvilIcons name='chart' style={styles.passwordCardIcon} size={30} backgroundColor={'#60D3EE'} />
+          <Ionicons name='wifi-outline' style={styles.passwordCardIcon} size={25} backgroundColor={'#60D3EE'} />
           <ThemedText style={styles.passwordCardText}>WLAN</ThemedText>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.passwordOptionCard}>
-          <EvilIcons name='external-link' style={styles.passwordCardIcon} size={30} backgroundColor={'#F14871'} />
+          <Ionicons name='extension-puzzle-outline' style={styles.passwordCardIcon} size={25} backgroundColor={'#F14871'} />
           <ThemedText style={styles.passwordCardText}>More</ThemedText>
         </TouchableOpacity>
+      </ThemedView>
 
-      </TouchableOpacity>
+
+      <ThemedView style={styles.savedPasswordsContainer}>
+        <ThemedView style={styles.savedPasswords}>
+          <ThemedText style={{
+            color: '#0C0C0C',
+            fontWeight: 700
+          }}>
+            Saved Passwords
+          </ThemedText>
+
+          <TouchableOpacity style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 5, backgroundColor: 'transparent' }}>
+            <ThemedText style={{ color: '#0C0C0C' }}>See all</ThemedText>
+            <Ionicons name='arrow-forward-outline' size={25} color={'#0C0C0C'} />
+          </TouchableOpacity>
+        </ThemedView>
+
+        <ThemedView style={styles.savedPasswordsContainer}>
+
+          <TouchableOpacity style={styles.savedPasswordsCard}>
+            <ThemedView style={styles.savedPasswordCardContent}>
+              <ThemedView style={styles.savedPasswordCardIcon}>
+                <Ionicons name='logo-paypal' style={styles.passwordCardIcon} size={25} backgroundColor={'#002C8B'} />
+              </ThemedView>
+
+              <ThemedView style={styles.savedPasswordCardText}>
+                <ThemedText style={styles.passwordCardText}>PayPal</ThemedText>
+                <ThemedText style={{ opacity: 0.5, color: 'black' }}>Added on 31/09/2024</ThemedText>
+              </ThemedView>
+            </ThemedView>
+            <Ionicons name='arrow-forward-outline' size={25} color={'#0C0C0C'} />
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.savedPasswordsCard}>
+            <ThemedView style={styles.savedPasswordCardContent}>
+              <ThemedView style={styles.savedPasswordCardIcon}>
+                <Ionicons name='logo-figma' style={styles.passwordCardIcon} size={25} backgroundColor={'#A259FF'} />
+              </ThemedView>
+
+              <ThemedView style={styles.savedPasswordCardText}>
+                <ThemedText style={styles.passwordCardText}>Figma</ThemedText>
+                <ThemedText style={{ opacity: 0.5, color: 'black' }}>Added on 14/03/2024</ThemedText>
+              </ThemedView>
+            </ThemedView>
+            <Ionicons name='arrow-forward-outline' size={25} color={'#0C0C0C'} />
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.savedPasswordsCard}>
+            <ThemedView style={styles.savedPasswordCardContent}>
+              <ThemedView style={styles.savedPasswordCardIcon}>
+                <Ionicons name='logo-stackoverflow' style={styles.passwordCardIcon} size={25} backgroundColor={'#F48024'} />
+              </ThemedView>
+
+              <ThemedView style={styles.savedPasswordCardText}>
+                <ThemedText style={styles.passwordCardText}>Stackoverflow</ThemedText>
+                <ThemedText style={{ opacity: 0.5, color: 'black' }}>Added on 01/02/2024</ThemedText>
+              </ThemedView>
+            </ThemedView>
+            <Ionicons name='arrow-forward-outline' size={25} color={'#0C0C0C'} />
+          </TouchableOpacity>
+
+        </ThemedView>
+      </ThemedView>
+
+
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
+
+  savedPasswordCardContent: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: 15,
+    flexDirection: 'row',
+    backgroundColor: 'transparent',
+    color: '#0C0C0C'
+  },
+
+  savedPasswordCardIcon: {
+    display: 'flex',
+    alignItems: 'center',
+    flexDirection: 'column',
+    backgroundColor: 'transparent',
+    color: '#0C0C0C'
+  },
+
+  passwordCardText: {
+    backgroundColor: 'transparent',
+    color: '#0C0C0C'
+  },
+
+  savedPasswordCardText: {
+    display: 'flex',
+    flexDirection: 'column',
+    backgroundColor: 'transparent',
+    color: '#0C0C0C'
+  },
+
+  savedPasswordsCard: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: '#FFFFFF',
+    borderRadius: 15,
+    padding: 15,
+    margin: 15,
+    marginTop: 10,
+    marginBottom: 10,
+    flexBasis: '100%',
+    flexGrow: 1
+  },
+
+  savedPasswordsContainer: {
+    display: 'flex',
+    backgroundColor: 'transparent',
+    color: '#0C0C0C',
+
+  },
+
+  savedPasswords: {
+    backgroundColor: 'transparent',
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginLeft: 20,
+    marginRight: 20,
+    justifyContent: 'space-between',
+    color: '#0C0C0C'
+  },
+
   headerText: {
     backgroundColor: 'transparent'
   },
@@ -131,10 +258,6 @@ const styles = StyleSheet.create({
     flexBasis: '42%',
     flexGrow: 1,
     gap: 10
-  },
-
-  passwordCardText: {
-    color: 'black',
   },
 
   passwordOptionContainer: {
